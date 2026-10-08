@@ -22,18 +22,18 @@ from models.ml_engine import load_data, clean_data
 
 # Views
 from authentication.auth_views import render_auth_page, render_user_profile_sidebar
-from pages.landing_view import render_landing_page
-from pages.dataset_overview_view import render_dataset_overview
-from pages.data_cleaning_view import render_data_cleaning
-from pages.eda_view import render_eda
-from pages.feature_selection_view import render_feature_selection
-from pages.model_training_view import render_model_training
-from pages.model_comparison_view import render_model_comparison
-from pages.hyperparameter_tuning_view import render_hyperparameter_tuning
-from pages.confusion_matrix_view import render_confusion_matrix_view
-from pages.prediction_view import render_prediction_page
-from pages.reports_view import render_reports_page
-from pages.about_view import render_about_project
+from src.landing_view import render_landing_page
+from src.dataset_overview_view import render_dataset_overview
+from src.data_cleaning_view import render_data_cleaning
+from src.eda_view import render_eda
+from src.feature_selection_view import render_feature_selection
+from src.model_training_view import render_model_training
+from src.model_comparison_view import render_model_comparison
+from src.hyperparameter_tuning_view import render_hyperparameter_tuning
+from src.confusion_matrix_view import render_confusion_matrix_view
+from src.prediction_view import render_prediction_page
+from src.reports_view import render_reports_page
+from src.about_view import render_about_project
 
 # ----------------- SESSION STATE MANAGEMENT -----------------
 if 'logged_in' not in st.session_state:

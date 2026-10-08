@@ -92,17 +92,22 @@ def render_prediction_page():
                 
             img_path = os.path.join(ASSETS_DIR, img_file)
             
+            # Clean, high-contrast outcome banner
+            badge_class = "species-tag-setosa"
+            if "Versicolor" in species:
+                badge_class = "species-tag-versicolor"
+            elif "Virginica" in species:
+                badge_class = "species-tag-virginica"
+                
             st.markdown(f"""
-                <div class="{css_class}">
-                    <span style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;">Predicted Botanical Taxon</span>
-                    <h2 style="margin: 8px 0; font-size: 2.2rem;">{species}</h2>
-                    <div style="font-size: 1.1rem; font-weight: 600; color: #4338ca;">
-                        Confidence Score: <b>{conf * 100:.2f}%</b>
-                    </div>
+                <div class="saas-card" style="border-left: 5px solid #4f46e5; margin-bottom: 20px;">
+                    <div class="species-tag {badge_class}">Identified Species Taxon</div>
+                    <h2 style="margin: 10px 0 6px 0; font-size: 2rem; color: #0f172a; font-weight: 800;">{species}</h2>
+                    <p style="margin: 0; font-size: 1.05rem; font-weight: 600; color: #4338ca;">
+                        Algorithmic Confidence: <b>{conf * 100:.2f}%</b> (High Reliability)
+                    </p>
                 </div>
             """, unsafe_allow_html=True)
-            
-            st.markdown("<br>", unsafe_allow_html=True)
             
             # Image and explanation columns
             ic1, ic2 = st.columns([1, 1.4])
