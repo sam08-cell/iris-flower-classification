@@ -20,8 +20,8 @@ def render_reports_page():
         r1, r2 = st.columns(2)
         
         with r1:
-            st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-            st.markdown("#### 📊 Model Comparison Benchmark Report")
+            st.markdown('<div class="saas-card">', unsafe_allow_html=True)
+            st.markdown("#### Model Comparison Benchmark Report")
             st.write("Generates a structured PDF benchmark detailing Accuracy, Precision, Recall, and F1 metrics for KNN, Decision Tree, and SVM.")
             
             # Check comparison data
@@ -45,7 +45,7 @@ def render_reports_page():
             st.markdown('</div>', unsafe_allow_html=True)
             
         with r2:
-            st.markdown('<div class="glass-card">', unsafe_allow_html=True)
+            st.markdown('<div class="saas-card">', unsafe_allow_html=True)
             st.markdown("#### 🌸 Individual Specimen Prediction Certificate")
             st.write("Download an official classification report for the most recently evaluated botanical specimen.")
             if 'last_prediction' in st.session_state:

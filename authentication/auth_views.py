@@ -25,7 +25,7 @@ def render_auth_page():
         
         # ----------------- LOGIN TAB -----------------
         with tab_login:
-            st.markdown('<div class="glass-card">', unsafe_allow_html=True)
+            st.markdown('<div class="saas-card">', unsafe_allow_html=True)
             st.subheader("Welcome Back")
             st.caption("Sign in with your email and password to access the AI dashboard.")
             
@@ -46,7 +46,7 @@ def render_auth_page():
                         if success:
                             st.session_state['user'] = user_data
                             st.session_state['logged_in'] = True
-                            st.session_state['current_page'] = "Dashboard"
+                            st.session_state['selected_menu'] = "🏠 Home"
                             st.success(f"Welcome back, {user_data['fullname']}!")
                             st.rerun()
                         else:
@@ -62,7 +62,7 @@ def render_auth_page():
 
         # ----------------- REGISTER TAB -----------------
         with tab_register:
-            st.markdown('<div class="glass-card">', unsafe_allow_html=True)
+            st.markdown('<div class="saas-card">', unsafe_allow_html=True)
             st.subheader("Create Your Account")
             st.caption("Register for immediate access to dataset analytics and ML models.")
             
@@ -94,7 +94,7 @@ def render_auth_page():
 
         # ----------------- FORGOT PASSWORD TAB -----------------
         with tab_forgot:
-            st.markdown('<div class="glass-card">', unsafe_allow_html=True)
+            st.markdown('<div class="saas-card">', unsafe_allow_html=True)
             st.subheader("Password Recovery")
             st.caption("Reset your credentials to regain access to your account.")
             

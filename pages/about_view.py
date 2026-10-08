@@ -9,8 +9,8 @@ def render_about_project():
     
     with col1:
         st.markdown("""
-            <div class="glass-card">
-                <h4 style="color: #4f46e5;">🎯 Project Objective & Scope</h4>
+            <div class="saas-card">
+                <h4>🎯 Project Objective & Scope</h4>
                 <p style="font-size: 0.92rem; color: #475569; line-height: 1.6;">
                     The Iris Flower Species Classification System is an enterprise-grade machine learning platform 
                     designed to classify botanical specimens into three taxonomic entities:
@@ -29,8 +29,8 @@ def render_about_project():
         
     with col2:
         st.markdown("""
-            <div class="glass-card">
-                <h4 style="color: #9333ea;">🛠️ Technical Architecture & Stack</h4>
+            <div class="saas-card">
+                <h4>🛠️ Technical Architecture & Stack</h4>
                 <ul style="font-size: 0.9rem; color: #475569; padding-left: 20px; line-height: 1.7;">
                     <li><b>Front-End:</b> Streamlit 1.45+ with responsive Glassmorphic design and CSS3 animations.</li>
                     <li><b>Machine Learning:</b> Scikit-Learn (KNeighborsClassifier, DecisionTreeClassifier, SVC, GridSearchCV).</li>
@@ -47,7 +47,7 @@ def render_about_project():
     
     with m1:
         st.markdown("""
-            <div class="glass-card" style="height: 260px;">
+            <div class="saas-card">
                 <h5 style="color: #2563eb;">K-Nearest Neighbors</h5>
                 <p style="font-size: 0.88rem; color: #475569;">
                     Computes Minkowski or Euclidean distance:
@@ -61,7 +61,7 @@ def render_about_project():
         
     with m2:
         st.markdown("""
-            <div class="glass-card" style="height: 260px;">
+            <div class="saas-card">
                 <h5 style="color: #059669;">Decision Tree</h5>
                 <p style="font-size: 0.88rem; color: #475569;">
                     Minimizes Gini Impurity at each split:
@@ -75,7 +75,7 @@ def render_about_project():
         
     with m3:
         st.markdown("""
-            <div class="glass-card" style="height: 260px;">
+            <div class="saas-card">
                 <h5 style="color: #9333ea;">Support Vector Machine</h5>
                 <p style="font-size: 0.88rem; color: #475569;">
                     Maximizes the geometric functional margin:

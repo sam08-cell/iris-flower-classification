@@ -12,7 +12,7 @@ def render_data_cleaning(df_raw: pd.DataFrame):
     df_cleaned, report = clean_data(df_raw)
     
     with col1:
-        st.markdown('<div class="glass-card">', unsafe_allow_html=True)
+        st.markdown('<div class="saas-card">', unsafe_allow_html=True)
         st.subheader("🛠️ Data Hygiene Audit Report")
         
         c1, c2, c3 = st.columns(3)
@@ -28,7 +28,7 @@ def render_data_cleaning(df_raw: pd.DataFrame):
         st.markdown('</div>', unsafe_allow_html=True)
         
     with col2:
-        st.markdown('<div class="glass-card">', unsafe_allow_html=True)
+        st.markdown('<div class="saas-card">', unsafe_allow_html=True)
         st.subheader("🔍 Column-Wise Missing Breakdown")
         missing_df = pd.DataFrame(list(report["missing_per_col"].items()), columns=["Column", "Missing Count"])
         missing_df["Missing %"] = (missing_df["Missing Count"] / report["initial_rows"] * 100).map("{:.1f}%".format)

@@ -1,177 +1,169 @@
 def get_custom_css(dark_mode: bool = False) -> str:
-    """Return polished custom CSS styling for light or dark glassmorphic SaaS theme."""
+    """Return sleek, modern, enterprise SaaS typography and responsive layout styling."""
     if dark_mode:
-        bg_primary = "#0a0e1a"
-        bg_card = "rgba(23, 31, 51, 0.75)"
-        border_card = "rgba(99, 102, 241, 0.25)"
-        text_primary = "#f8fafc"
-        text_secondary = "#94a3b8"
-        accent_gradient = "linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%)"
-        card_shadow = "0 8px 32px 0 rgba(0, 0, 0, 0.37)"
+        bg_primary = "#0b0f19"
+        bg_card = "#111827"
+        border_card = "#1f2937"
+        text_primary = "#f9fafb"
+        text_secondary = "#9ca3af"
+        accent_color = "#6366f1"
+        card_shadow = "0 4px 20px -2px rgba(0, 0, 0, 0.5)"
         sidebar_bg = "#0f172a"
-        stat_bg = "rgba(30, 41, 59, 0.8)"
+        stat_bg = "#1f2937"
+        hero_gradient = "linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4338ca 100%)"
     else:
         bg_primary = "#f8fafc"
-        bg_card = "rgba(255, 255, 255, 0.85)"
-        border_card = "rgba(226, 232, 240, 0.8)"
+        bg_card = "#ffffff"
+        border_card = "#e2e8f0"
         text_primary = "#0f172a"
         text_secondary = "#475569"
-        accent_gradient = "linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%)"
-        card_shadow = "0 10px 25px -5px rgba(99, 102, 241, 0.1), 0 8px 10px -6px rgba(99, 102, 241, 0.05)"
+        accent_color = "#4f46e5"
+        card_shadow = "0 4px 16px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -2px rgba(15, 23, 42, 0.04)"
         sidebar_bg = "#ffffff"
-        stat_bg = "rgba(241, 245, 249, 0.85)"
+        stat_bg = "#f1f5f9"
+        hero_gradient = "linear-gradient(135deg, #1e1b4b 0%, #3730a3 50%, #4f46e5 100%)"
 
     return f"""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
     
     html, body, [class*="css"] {{
-        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     }}
     
-    /* Main application background */
+    code, pre {{
+        font-family: 'JetBrains Mono', monospace !important;
+    }}
+    
     .stApp {{
         background: {bg_primary};
         color: {text_primary};
     }}
     
-    /* Glassmorphism Cards */
-    .glass-card {{
+    /* Clean, Professional SaaS Card (no fixed heights, no overflow) */
+    .saas-card {{
         background: {bg_card};
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
         border: 1px solid {border_card};
-        border-radius: 16px;
+        border-radius: 12px;
         padding: 24px;
         box-shadow: {card_shadow};
-        transition: transform 0.25s ease, box-shadow 0.25s ease;
         margin-bottom: 20px;
+        height: auto;
+        overflow: visible;
+        box-sizing: border-box;
     }}
     
-    .glass-card:hover {{
-        transform: translateY(-2px);
-        box-shadow: 0 14px 35px -5px rgba(99, 102, 241, 0.18);
-    }}
-    
-    /* Hero Section Banner */
-    .hero-banner {{
-        background: {accent_gradient};
-        border-radius: 20px;
-        padding: 40px 32px;
-        color: #ffffff;
-        text-align: center;
-        box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.4);
-        margin-bottom: 28px;
-        animation: fadeIn 0.8s ease-in-out;
-    }}
-    
-    .hero-title {{
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 2.6rem;
-        font-weight: 800;
-        margin-bottom: 12px;
-        letter-spacing: -0.02em;
-        line-height: 1.2;
-    }}
-    
-    .hero-subtitle {{
-        font-size: 1.15rem;
-        font-weight: 400;
-        opacity: 0.95;
-        max-width: 680px;
-        margin: 0 auto 20px auto;
-        line-height: 1.5;
-    }}
-    
-    /* Stat Metric Box */
-    .metric-badge {{
-        background: {stat_bg};
-        border: 1px solid {border_card};
-        border-radius: 14px;
-        padding: 16px 20px;
-        text-align: center;
-        transition: all 0.2s ease;
-    }}
-    
-    .metric-value {{
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 2rem;
+    .saas-card h3, .saas-card h4, .saas-card h5 {{
+        color: {text_primary};
+        margin-top: 0;
         font-weight: 700;
-        background: {accent_gradient};
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        letter-spacing: -0.01em;
+    }}
+    
+    .saas-card p, .saas-card span, .saas-card li {{
+        color: {text_secondary};
+        line-height: 1.6;
+        word-wrap: break-word;
+    }}
+    
+    /* Premium Executive Hero Banner */
+    .saas-hero {{
+        background: {hero_gradient};
+        border-radius: 16px;
+        padding: 36px 32px;
+        color: #ffffff;
+        box-shadow: 0 10px 25px -5px rgba(49, 46, 129, 0.35);
+        margin-bottom: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }}
+    
+    .saas-hero h1 {{
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin: 0 0 12px 0;
+        color: #ffffff;
+        letter-spacing: -0.02em;
+    }}
+    
+    .saas-hero p {{
+        font-size: 1.05rem;
+        color: #e0e7ff;
+        margin: 0;
+        line-height: 1.6;
+        max-width: 800px;
+    }}
+    
+    /* Executive Metric Badge */
+    .saas-stat-badge {{
+        background: {bg_card};
+        border: 1px solid {border_card};
+        border-radius: 12px;
+        padding: 18px 20px;
+        box-shadow: {card_shadow};
+        margin-bottom: 12px;
+    }}
+    
+    .saas-stat-badge .stat-num {{
+        font-size: 1.85rem;
+        font-weight: 800;
+        color: {accent_color};
         line-height: 1.2;
     }}
     
-    .metric-label {{
-        font-size: 0.85rem;
+    .saas-stat-badge .stat-lbl {{
+        font-size: 0.8rem;
         font-weight: 600;
         color: {text_secondary};
         text-transform: uppercase;
-        letter-spacing: 0.05em;
+        letter-spacing: 0.06em;
         margin-top: 4px;
     }}
     
-    /* Species Prediction Card */
-    .prediction-card-setosa {{
-        background: linear-gradient(135deg, rgba(59, 130, 246, 0.12) 0%, rgba(99, 102, 241, 0.2) 100%);
-        border: 2px solid #3b82f6;
-        border-radius: 18px;
-        padding: 24px;
-        text-align: center;
-    }}
-    
-    .prediction-card-versicolor {{
-        background: linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(168, 85, 247, 0.2) 100%);
-        border: 2px solid #8b5cf6;
-        border-radius: 18px;
-        padding: 24px;
-        text-align: center;
-    }}
-    
-    .prediction-card-virginica {{
-        background: linear-gradient(135deg, rgba(236, 72, 153, 0.12) 0%, rgba(244, 63, 94, 0.2) 100%);
-        border: 2px solid #ec4899;
-        border-radius: 18px;
-        padding: 24px;
-        text-align: center;
-    }}
-    
-    /* Best Model Tag */
-    .best-badge {{
+    /* Clean Species Diagnostic Badge */
+    .species-tag {{
         display: inline-block;
-        background: #10b981;
-        color: white;
-        font-size: 0.75rem;
-        font-weight: 700;
-        padding: 4px 10px;
+        padding: 6px 14px;
         border-radius: 20px;
-        letter-spacing: 0.05em;
+        font-weight: 700;
+        font-size: 0.85rem;
+        letter-spacing: 0.03em;
         text-transform: uppercase;
     }}
     
-    /* Sidebar styling */
+    .species-tag-setosa {{
+        background: rgba(59, 130, 246, 0.12);
+        color: #2563eb;
+        border: 1px solid rgba(59, 130, 246, 0.3);
+    }}
+    
+    .species-tag-versicolor {{
+        background: rgba(139, 92, 246, 0.12);
+        color: #7c3aed;
+        border: 1px solid rgba(139, 92, 246, 0.3);
+    }}
+    
+    .species-tag-virginica {{
+        background: rgba(236, 72, 153, 0.12);
+        color: #db2777;
+        border: 1px solid rgba(236, 72, 153, 0.3);
+    }}
+    
+    /* Streamlit Components Enhancement */
     [data-testid="stSidebar"] {{
         background-color: {sidebar_bg};
         border-right: 1px solid {border_card};
     }}
     
-    /* Primary buttons */
     .stButton>button {{
-        border-radius: 10px;
+        border-radius: 8px;
         font-weight: 600;
-        transition: all 0.2s ease;
+        padding: 8px 18px;
     }}
     
-    /* Form inputs */
-    .stTextInput>div>div>input, .stNumberInput>div>div>input {{
-        border-radius: 10px;
-    }}
-    
-    /* Keyframe Animations */
-    @keyframes fadeIn {{
-        from {{ opacity: 0; transform: translateY(10px); }}
-        to {{ opacity: 1; transform: translateY(0); }}
+    /* Ensure clean tables */
+    [data-testid="stDataFrame"] {{
+        border-radius: 8px;
+        overflow: hidden;
     }}
     </style>
     """

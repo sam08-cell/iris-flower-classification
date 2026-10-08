@@ -16,7 +16,7 @@ def render_hyperparameter_tuning(df: pd.DataFrame):
         X_train, X_test, y_train, y_test = st.session_state['test_split_info']
         
     st.markdown("""
-        <div class="glass-card">
+        <div class="saas-card">
             <h4>GridSearchCV Optimization Spaces</h4>
             <ul>
                 <li><b>KNN:</b> <code>n_neighbors</code> ∈ [1, 3, 5, 7, 9, 11, 15] & <code>weights</code> ∈ ['uniform', 'distance']</li>
@@ -45,8 +45,8 @@ def render_hyperparameter_tuning(df: pd.DataFrame):
     t_knn, t_dt, t_svm = st.columns(3)
     
     with t_knn:
-        st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-        st.markdown("#### 🔵 KNN (Tuned)")
+        st.markdown('<div class="saas-card">', unsafe_allow_html=True)
+        st.markdown("#### KNN (Tuned)")
         knn_tuned = tuned_results["KNN"]
         knn_base_acc = default_results["KNN"]["accuracy"]
         knn_new_acc = knn_tuned["test_accuracy"]
@@ -59,8 +59,8 @@ def render_hyperparameter_tuning(df: pd.DataFrame):
         st.markdown('</div>', unsafe_allow_html=True)
         
     with t_dt:
-        st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-        st.markdown("#### 🟢 Decision Tree (Tuned)")
+        st.markdown('<div class="saas-card">', unsafe_allow_html=True)
+        st.markdown("#### Decision Tree (Tuned)")
         dt_tuned = tuned_results["Decision Tree"]
         dt_base_acc = default_results["Decision Tree"]["accuracy"]
         dt_new_acc = dt_tuned["test_accuracy"]
@@ -73,8 +73,8 @@ def render_hyperparameter_tuning(df: pd.DataFrame):
         st.markdown('</div>', unsafe_allow_html=True)
         
     with t_svm:
-        st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-        st.markdown("#### 🟣 SVM (Tuned)")
+        st.markdown('<div class="saas-card">', unsafe_allow_html=True)
+        st.markdown("#### SVM (Tuned)")
         svm_tuned = tuned_results["SVM"]
         svm_base_acc = default_results["SVM"]["accuracy"]
         svm_new_acc = svm_tuned["test_accuracy"]

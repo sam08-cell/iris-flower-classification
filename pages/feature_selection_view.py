@@ -44,7 +44,7 @@ def render_feature_selection(df: pd.DataFrame):
         st.dataframe(feat_df[['Feature', 'Importance Score', 'Normalized %']], use_container_width=True)
         
         st.markdown("""
-            <div class="glass-card" style="margin-top: 15px;">
+            <div class="saas-card" style="margin-top: 15px;">
                 <h5 style="margin: 0; color: #4f46e5;">Key Selection Takeaways</h5>
                 <p style="font-size: 0.88rem; color: #475569; margin-top: 6px;">
                     <b>Petal Length (~44%)</b> and <b>Petal Width (~42%)</b> account for over <b>85%</b> of the predictive 
@@ -56,7 +56,7 @@ def render_feature_selection(df: pd.DataFrame):
     # Correlation Analysis
     st.subheader("🔬 Correlation with Class Separability")
     st.markdown("""
-        <div class="glass-card">
+        <div class="saas-card">
             <h4>Why are Petal Dimensions the Dominant Predictors?</h4>
             <p style="font-size: 0.92rem; color: #475569; line-height: 1.6;">
                 In botanical evolutionary biology, petal dimensions directly reflect ecological specialization for pollinator attraction. 

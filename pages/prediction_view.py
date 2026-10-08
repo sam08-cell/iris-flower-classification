@@ -15,23 +15,23 @@ def render_prediction_page():
     col_input, col_result = st.columns([1.1, 1.4])
     
     with col_input:
-        st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-        st.subheader("📏 Floral Measurement Inputs")
+        st.markdown('<div class="saas-card">', unsafe_allow_html=True)
+        st.subheader("Floral Measurement Inputs")
         
         # Preset buttons for quick testing
         st.markdown("<p style='font-size: 0.85rem; color: #64748b; margin-bottom: 5px;'>Quick Sample Presets:</p>", unsafe_allow_html=True)
         preset_cols = st.columns(3)
-        if preset_cols[0].button("🌸 Setosa"):
+        if preset_cols[0].button("Setosa"):
             st.session_state['input_sl'] = 5.1
             st.session_state['input_sw'] = 3.5
             st.session_state['input_pl'] = 1.4
             st.session_state['input_pw'] = 0.2
-        if preset_cols[1].button("🌺 Versicolor"):
+        if preset_cols[1].button("Versicolor"):
             st.session_state['input_sl'] = 6.0
             st.session_state['input_sw'] = 2.9
             st.session_state['input_pl'] = 4.5
             st.session_state['input_pw'] = 1.5
-        if preset_cols[2].button("🌷 Virginica"):
+        if preset_cols[2].button("Virginica"):
             st.session_state['input_sl'] = 6.9
             st.session_state['input_sw'] = 3.1
             st.session_state['input_pl'] = 5.8
@@ -47,7 +47,7 @@ def render_prediction_page():
             ["SVM (Tuned)", "KNN (Tuned)", "Decision Tree (Tuned)", "SVM", "KNN", "Decision Tree"]
         )
         
-        predict_clicked = st.button("✨ Predict Species Now", type="primary", use_container_width=True)
+        predict_clicked = st.button("Predict Species", type="primary", use_container_width=True)
         st.markdown('</div>', unsafe_allow_html=True)
         
     with col_result:
@@ -141,12 +141,11 @@ def render_prediction_page():
             )
         else:
             st.markdown("""
-                <div class="glass-card" style="text-align: center; padding: 40px 20px;">
-                    <div style="font-size: 3rem; margin-bottom: 10px;">🌸</div>
-                    <h3>Awaiting Botanical Inputs</h3>
+                <div class="saas-card" style="text-align: center; padding: 40px 20px;">
+                    <h3>Ready for Botanical Inference</h3>
                     <p style="color: #64748b;">
-                        Select or enter floral dimensions on the left panel and click 
-                        <b>"Predict Species Now"</b> to trigger multi-class model inference.
+                        Provide floral measurements on the left panel or click one of the quick presets 
+                        (<b>Setosa</b>, <b>Versicolor</b>, <b>Virginica</b>) to evaluate taxon predictions.
                     </p>
                 </div>
             """, unsafe_allow_html=True)

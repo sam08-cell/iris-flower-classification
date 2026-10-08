@@ -62,8 +62,8 @@ def render_model_training(df: pd.DataFrame):
     c_knn, c_dt, c_svm = st.columns(3)
     
     with c_knn:
-        st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-        st.markdown("#### 🔵 K-Nearest Neighbors (KNN)")
+        st.markdown('<div class="saas-card">', unsafe_allow_html=True)
+        st.markdown("#### K-Nearest Neighbors (KNN)")
         st.caption("Hyperparameters: n_neighbors=5, metric=minkowski")
         knn_res = results["KNN"]
         st.metric("Accuracy", f"{knn_res['accuracy']*100:.2f}%")
@@ -73,8 +73,8 @@ def render_model_training(df: pd.DataFrame):
         st.markdown('</div>', unsafe_allow_html=True)
         
     with c_dt:
-        st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-        st.markdown("#### 🟢 Decision Tree")
+        st.markdown('<div class="saas-card">', unsafe_allow_html=True)
+        st.markdown("#### Decision Tree")
         st.caption("Hyperparameters: max_depth=3, criterion=gini")
         dt_res = results["Decision Tree"]
         st.metric("Accuracy", f"{dt_res['accuracy']*100:.2f}%")
@@ -84,8 +84,8 @@ def render_model_training(df: pd.DataFrame):
         st.markdown('</div>', unsafe_allow_html=True)
         
     with c_svm:
-        st.markdown('<div class="glass-card">', unsafe_allow_html=True)
-        st.markdown("#### 🟣 Support Vector Machine (SVM)")
+        st.markdown('<div class="saas-card">', unsafe_allow_html=True)
+        st.markdown("#### Support Vector Machine (SVM)")
         st.caption("Hyperparameters: kernel=linear, C=1.0")
         svm_res = results["SVM"]
         st.metric("Accuracy", f"{svm_res['accuracy']*100:.2f}%")

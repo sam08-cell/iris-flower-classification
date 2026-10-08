@@ -1,166 +1,151 @@
 import streamlit as st
 
 def render_landing_page():
-    """Render modern SaaS Landing page with Hero, Features, About, and Footer."""
+    """Render modern, clean enterprise SaaS Landing page."""
     
     # Hero Section
     st.markdown("""
-        <div class="hero-banner">
-            <div style="font-size: 3.5rem; margin-bottom: 10px;">🌸 🤖 📊</div>
-            <h1 class="hero-title">Iris Flower Classification using Machine Learning</h1>
-            <p class="hero-subtitle">
-                Predict flower species instantly using Artificial Intelligence. 
-                Explore automated data cleaning, exploratory visual analytics, multi-model benchmarking, 
-                hyperparameter optimization, and exportable PDF intelligence reports.
+        <div class="saas-hero">
+            <div style="display: inline-block; padding: 4px 12px; background: rgba(255,255,255,0.15); border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">
+                Botanical AI Platform • v2.0
+            </div>
+            <h1>Iris Flower Species Classification System</h1>
+            <p>
+                An enterprise machine learning pipeline for real-time botanical taxon prediction, 
+                automated feature importance evaluation, multi-algorithm benchmarking, and PDF reporting.
             </p>
         </div>
     """, unsafe_allow_html=True)
     
-    # Hero Call-to-Action Buttons
-    col_btn1, col_btn2, col_space = st.columns([1.5, 1.5, 4])
-    with col_btn1:
-        if st.button("🚀 Get Started", type="primary", use_container_width=True):
-            if st.session_state.get('logged_in', False):
-                st.session_state['current_page'] = "Dashboard"
-            else:
-                st.session_state['current_page'] = "Auth"
+    # Action Buttons
+    c_btn1, c_btn2, _ = st.columns([1.3, 1.3, 4])
+    with c_btn1:
+        if st.button("🚀 Explore Dashboard", type="primary", use_container_width=True):
+            st.session_state['selected_menu'] = "📋 Dataset Overview"
             st.rerun()
-    with col_btn2:
-        if st.button("🔐 Login to Portal", use_container_width=True):
-            st.session_state['current_page'] = "Auth"
+    with c_btn2:
+        if st.button("🔮 Real-Time Prediction", use_container_width=True):
+            st.session_state['selected_menu'] = "🔮 Prediction"
             st.rerun()
             
     st.markdown("<br>", unsafe_allow_html=True)
     
-    # Features Section
-    st.markdown("### 🌟 Key Platform Capabilities")
-    fcol1, fcol2, fcol3 = st.columns(3)
+    # Core Architecture Highlights (Dynamic flex height - no text overflow)
+    st.subheader("Core System Architecture")
     
-    with fcol1:
+    col1, col2, col3 = st.columns(3)
+    with col1:
         st.markdown("""
-            <div class="glass-card" style="height: 220px;">
-                <div style="font-size: 2.2rem; margin-bottom: 8px;">📊</div>
-                <h4 style="margin: 0; font-weight: 700;">Data Analysis & EDA</h4>
-                <p style="color: #64748b; font-size: 0.9rem; margin-top: 8px;">
-                    Interactive 3D scatter plots, species distribution charts, correlation heatmaps, 
-                    and box plots with Plotly visualizations.
+            <div class="saas-card">
+                <h4>📊 Exploratory Data Analysis</h4>
+                <p>
+                    Interactive multi-dimensional Plotly visualizations including species distributions, 
+                    correlation matrices, and 3D coordinate space mappings.
                 </p>
             </div>
         """, unsafe_allow_html=True)
         
-    with fcol2:
+    with col2:
         st.markdown("""
-            <div class="glass-card" style="height: 220px;">
-                <div style="font-size: 2.2rem; margin-bottom: 8px;">⚡</div>
-                <h4 style="margin: 0; font-weight: 700;">Multi-Model Training</h4>
-                <p style="color: #64748b; font-size: 0.9rem; margin-top: 8px;">
-                    Benchmarking K-Nearest Neighbors (KNN), Decision Tree, and Support Vector Machine (SVM) 
-                    with GridSearchCV hyperparameter tuning.
+            <div class="saas-card">
+                <h4>⚡ Multi-Model Benchmarking</h4>
+                <p>
+                    Evaluates K-Nearest Neighbors (KNN), Decision Tree, and Support Vector Machine (SVM) 
+                    with stratified 80/20 train-test partitioning.
                 </p>
             </div>
         """, unsafe_allow_html=True)
         
-    with fcol3:
+    with col3:
         st.markdown("""
-            <div class="glass-card" style="height: 220px;">
-                <div style="font-size: 2.2rem; margin-bottom: 8px;">🎯</div>
-                <h4 style="margin: 0; font-weight: 700;">Real-Time Inference</h4>
-                <p style="color: #64748b; font-size: 0.9rem; margin-top: 8px;">
-                    Instant morphological dimension evaluation, confidence metric scoring, 
-                    species imagery rendering, and downloadable PDF reports.
+            <div class="saas-card">
+                <h4>🎛️ 5-Fold GridSearchCV Tuning</h4>
+                <p>
+                    Cross-validated hyperparameter optimization across distance metrics, tree depths, 
+                    and SVM kernels with automated best model identification.
                 </p>
             </div>
         """, unsafe_allow_html=True)
         
-    # Second row of features
-    fcol4, fcol5, fcol6 = st.columns(3)
-    with fcol4:
+    col4, col5, col6 = st.columns(3)
+    with col4:
         st.markdown("""
-            <div class="glass-card" style="height: 200px;">
-                <div style="font-size: 2.2rem; margin-bottom: 8px;">🧹</div>
-                <h4 style="margin: 0; font-weight: 700;">Automated Data Cleaning</h4>
-                <p style="color: #64748b; font-size: 0.9rem; margin-top: 8px;">
-                    Automatic duplicate identification, missing value imputation, and validation auditing.
+            <div class="saas-card">
+                <h4>🧹 Automated Data Hygiene</h4>
+                <p>
+                    Automated duplicate record purging, missing value checks, and statistical data validation.
                 </p>
             </div>
         """, unsafe_allow_html=True)
         
-    with fcol5:
+    with col5:
         st.markdown("""
-            <div class="glass-card" style="height: 200px;">
-                <div style="font-size: 2.2rem; margin-bottom: 8px;">📈</div>
-                <h4 style="margin: 0; font-weight: 700;">Model Comparison Matrix</h4>
-                <p style="color: #64748b; font-size: 0.9rem; margin-top: 8px;">
-                    Real-time comparison of Accuracy, Precision, Recall, and F1 Score with automatic top performer highlights.
+            <div class="saas-card">
+                <h4>🎯 Explainable AI Inference</h4>
+                <p>
+                    Instant taxonomic classification with confidence scoring, probability distribution, and biological rationale.
                 </p>
             </div>
         """, unsafe_allow_html=True)
         
-    with fcol6:
+    with col6:
         st.markdown("""
-            <div class="glass-card" style="height: 200px;">
-                <div style="font-size: 2.2rem; margin-bottom: 8px;">🔒</div>
-                <h4 style="margin: 0; font-weight: 700;">Secure SQLite Data Store</h4>
-                <p style="color: #64748b; font-size: 0.9rem; margin-top: 8px;">
-                    Built-in user credential hashing, login auditing, and prediction persistence with query filters.
+            <div class="saas-card">
+                <h4>📄 ReportLab PDF Export</h4>
+                <p>
+                    Download formal PDF prediction certificates and model benchmark reports.
                 </p>
             </div>
         """, unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # About Section
-    st.markdown("### 📖 About the Botanical Intelligence Platform")
-    acol1, acol2 = st.columns(2)
+    # Technical Overview Section
+    st.subheader("Dataset & Scientific Rationale")
+    ac1, ac2 = st.columns(2)
     
-    with acol1:
+    with ac1:
         st.markdown("""
-            <div class="glass-card">
-                <h4 style="color: #4f46e5;">What is the Iris Dataset?</h4>
-                <p style="font-size: 0.92rem; line-height: 1.6; color: #475569;">
-                    Introduced by British statistician and biologist Ronald Fisher in 1936, the Iris flower dataset 
-                    is the quintessential benchmark in pattern recognition and machine learning literature. 
-                    It comprises 150 biological specimens across three distinct subspecies:
+            <div class="saas-card">
+                <h4>Fisher's Botanical Iris Benchmark</h4>
+                <p>
+                    Introduced by British statistician Ronald Fisher in 1936, the Iris dataset represents 
+                    the quintessential standard for pattern recognition. It measures 150 specimens across 
+                    three distinct species:
                 </p>
-                <ul style="font-size: 0.9rem; color: #475569; padding-left: 20px;">
-                    <li><b>Iris Setosa</b> - Highly separable with compact petals.</li>
-                    <li><b>Iris Versicolor</b> - Moderate petal span and intermediate morphology.</li>
-                    <li><b>Iris Virginica</b> - Prominent petals with expansive dimensions.</li>
+                <ul>
+                    <li><b>Iris Setosa</b> — Separable by compact petals (length &lt; 2.5 cm).</li>
+                    <li><b>Iris Versicolor</b> — Intermediate morphological petal span.</li>
+                    <li><b>Iris Virginica</b> — Prominent petals with expansive dimensions.</li>
                 </ul>
             </div>
         """, unsafe_allow_html=True)
         
-    with acol2:
+    with ac2:
         st.markdown("""
-            <div class="glass-card">
-                <h4 style="color: #9333ea;">Importance of Botanical ML</h4>
-                <p style="font-size: 0.92rem; line-height: 1.6; color: #475569;">
-                    Automated botanical classification replaces manual taxonomic measurement with high-throughput 
-                    computer vision and supervised algorithms.
+            <div class="saas-card">
+                <h4>Mathematical Decision Boundaries</h4>
+                <p>
+                    By formulating mathematical separating hyperplanes across 
+                    Sepal Length, Sepal Width, Petal Length, and Petal Width, 
+                    the models achieve 95% to 100% precision.
                 </p>
-                <p style="font-size: 0.92rem; line-height: 1.6; color: #475569;">
-                    By training mathematical decision boundaries across Sepal Length, Sepal Width, Petal Length, 
-                    and Petal Width, intelligent models achieve 95% to 100% classification precision without destructive 
-                    laboratory intervention.
+                <p>
+                    Feature importance audits confirm petal dimensions contribute over 
+                    85% of total predictive power due to ecological pollinator specialization.
                 </p>
             </div>
         """, unsafe_allow_html=True)
 
-    # Footer
+    # Professional Footer
     st.markdown("""
-        <hr style="border: 0; border-top: 1px solid rgba(226, 232, 240, 0.8); margin-top: 40px; margin-bottom: 25px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; color: #64748b; font-size: 0.88rem;">
+        <hr style="border: 0; border-top: 1px solid #e2e8f0; margin-top: 40px; margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; color: #64748b; font-size: 0.85rem;">
             <div>
-                <b>Iris Flower Species Classification System</b> | Production AI Application
+                <b>Iris Species Classification System</b> • Machine Learning Production Portal
             </div>
-            <div style="display: flex; gap: 20px;">
-                <span>📘 Documentation</span>
-                <span>📬 Contact Support</span>
-                <span>⭐ GitHub Repository</span>
-                <span>🔒 Privacy & Security</span>
+            <div>
+                Built with Python, Streamlit, Scikit-Learn, and Plotly
             </div>
-        </div>
-        <div style="text-align: center; color: #94a3b8; font-size: 0.78rem; margin-top: 15px;">
-            © 2026 Machine Learning Project Systems. All rights reserved.
         </div>
     """, unsafe_allow_html=True)

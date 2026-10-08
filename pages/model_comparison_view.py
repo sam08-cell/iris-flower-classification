@@ -80,7 +80,7 @@ def render_model_comparison(df: pd.DataFrame):
     
     # Technical Insights
     st.markdown("""
-        <div class="glass-card">
+        <div class="saas-card">
             <h4>Algorithm Behavior Analysis</h4>
             <p style="font-size: 0.92rem; color: #475569; line-height: 1.6;">
                 • <b>Support Vector Machine (SVM):</b> Calculates optimal separating hyperplanes with maximum geometric margin, rendering it resilient against boundary noise.<br/>

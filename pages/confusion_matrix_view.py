@@ -56,7 +56,7 @@ def render_confusion_matrix_view(df: pd.DataFrame):
         
         # Overall Summary Metrics
         st.markdown(f"""
-            <div class="glass-card" style="margin-top: 15px;">
+            <div class="saas-card" style="margin-top: 15px;">
                 <b>Aggregated Performance Indicators:</b><br/>
                 • <b>Accuracy:</b> {cr['accuracy']*100:.2f}%<br/>
                 • <b>Macro Avg F1:</b> {cr['macro avg']['f1-score']*100:.2f}%<br/>
