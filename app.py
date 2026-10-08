@@ -76,7 +76,7 @@ with side_col2:
 
 st.sidebar.markdown("<hr style='margin: 8px 0 16px 0;'>", unsafe_allow_html=True)
 
-# Clean, essential streamlined menu tabs (only necessary tabs, no duplicate/empty views)
+# Clean, essential streamlined menu tabs
 menu_items = [
     "🏠 Overview & Home",
     "📋 Dataset & Cleaning",
@@ -87,11 +87,19 @@ menu_items = [
     "📑 Reports & History"
 ]
 
+# Ensure current navigation state exists before widget instantiation
+if 'nav_selection' not in st.session_state:
+    st.session_state['nav_selection'] = menu_items[0]
+
+def on_nav_change():
+    st.session_state['nav_selection'] = st.session_state['main_nav_radio']
+
 selected_menu = st.sidebar.radio(
     "Navigation Menu",
     menu_items,
-    index=0,
-    key="main_navigation_radio"
+    index=menu_items.index(st.session_state['nav_selection']) if st.session_state['nav_selection'] in menu_items else 0,
+    key="main_nav_radio",
+    on_change=on_nav_change
 )
 
 # Sidebar footer
@@ -105,31 +113,33 @@ st.sidebar.markdown("""
 """, unsafe_allow_html=True)
 
 # ----------------- CLEAN PAGE ROUTING -----------------
-if selected_menu == "🏠 Overview & Home":
+current_view = st.session_state.get('nav_selection', selected_menu)
+
+if current_view == "🏠 Overview & Home":
     render_landing_page()
 
-elif selected_menu == "📋 Dataset & Cleaning":
+elif current_view == "📋 Dataset & Cleaning":
     tab_ds, tab_clean = st.tabs(["📋 Dataset Overview", "🧹 Data Cleaning & Audit"])
     with tab_ds:
         render_dataset_overview(df_raw)
     with tab_clean:
         render_data_cleaning(df_raw)
 
-elif selected_menu == "📊 Exploratory Data Analysis":
+elif current_view == "📊 Exploratory Data Analysis":
     render_eda(df_clean)
 
-elif selected_menu == "🎯 Feature Importance":
+elif current_view == "🎯 Feature Importance":
     render_feature_selection(df_clean)
 
-elif selected_menu == "📈 Model Comparison & Tuning":
+elif current_view == "📈 Model Comparison & Tuning":
     tab_comp, tab_tune = st.tabs(["📈 Model Comparison Matrix", "🎛️ Hyperparameter Tuning (GridSearchCV)"])
     with tab_comp:
         render_model_comparison(df_clean)
     with tab_tune:
         render_hyperparameter_tuning(df_clean)
 
-elif selected_menu == "🔮 Real-Time Prediction":
+elif current_view == "🔮 Real-Time Prediction":
     render_prediction_page()
 
-elif selected_menu == "📑 Reports & History":
+elif current_view == "📑 Reports & History":
     render_reports_page()

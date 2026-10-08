@@ -19,11 +19,11 @@ def render_landing_page():
     c_btn1, c_btn2, _ = st.columns([1.4, 1.4, 3.5])
     with c_btn1:
         if st.button("Explore Analytics", type="primary", use_container_width=True):
-            st.session_state['main_navigation_radio'] = "📋 Dataset & Cleaning"
+            st.session_state['nav_selection'] = "📋 Dataset & Cleaning"
             st.rerun()
     with c_btn2:
         if st.button("Real-Time Prediction", use_container_width=True):
-            st.session_state['main_navigation_radio'] = "🔮 Real-Time Prediction"
+            st.session_state['nav_selection'] = "🔮 Real-Time Prediction"
             st.rerun()
             
     st.markdown("<div style='margin-top: 1.5rem;'></div>", unsafe_allow_html=True)
