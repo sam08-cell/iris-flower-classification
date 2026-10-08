@@ -20,9 +20,13 @@ def render_reports_page():
         r1, r2 = st.columns(2)
         
         with r1:
-            st.markdown('<div class="saas-card">', unsafe_allow_html=True)
-            st.markdown("#### Model Comparison Benchmark Report")
-            st.write("Generates a structured PDF benchmark detailing Accuracy, Precision, Recall, and F1 metrics for KNN, Decision Tree, and SVM.")
+            st.markdown("""
+                <div class="shadcn-card">
+                    <div class="shadcn-card-title">Model Comparison Benchmark Report</div>
+                    <div class="shadcn-card-description" style="margin-bottom: 16px;">
+                        Generates a structured PDF benchmark detailing Accuracy, Precision, Recall, and F1 metrics for KNN, Decision Tree, and SVM.
+                    </div>
+            """, unsafe_allow_html=True)
             
             # Check comparison data
             comp_data = st.session_state.get('comparison_table_data', [])
@@ -45,9 +49,13 @@ def render_reports_page():
             st.markdown('</div>', unsafe_allow_html=True)
             
         with r2:
-            st.markdown('<div class="saas-card">', unsafe_allow_html=True)
-            st.markdown("#### 🌸 Individual Specimen Prediction Certificate")
-            st.write("Download an official classification report for the most recently evaluated botanical specimen.")
+            st.markdown("""
+                <div class="shadcn-card">
+                    <div class="shadcn-card-title">🌸 Individual Specimen Prediction Certificate</div>
+                    <div class="shadcn-card-description" style="margin-bottom: 16px;">
+                        Download an official classification report for the most recently evaluated botanical specimen.
+                    </div>
+            """, unsafe_allow_html=True)
             if 'last_prediction' in st.session_state:
                 from reports.pdf_generator import generate_prediction_pdf
                 single_pdf = generate_prediction_pdf(st.session_state['last_prediction'])
@@ -59,7 +67,7 @@ def render_reports_page():
                     use_container_width=True
                 )
             else:
-                st.info("Perform a prediction on the 'Prediction' page first to enable certificate export.")
+                st.info("Perform a prediction on the 'Real-Time Prediction' page first to enable certificate export.")
             st.markdown('</div>', unsafe_allow_html=True)
 
     # ------------------ 2. Prediction History ------------------

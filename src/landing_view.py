@@ -1,151 +1,169 @@
 import streamlit as st
 
 def render_landing_page():
-    """Render modern, clean enterprise SaaS Landing page."""
+    """Render landing page built strictly with shadcn/ui component patterns."""
     
-    # Hero Section
+    # shadcn/ui Hero Component
     st.markdown("""
-        <div class="saas-hero">
-            <div style="display: inline-block; padding: 4px 12px; background: rgba(255,255,255,0.15); border-radius: 20px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px;">
-                Botanical AI Platform • v2.0
-            </div>
+        <div class="shadcn-hero">
+            <span class="shadcn-badge shadcn-badge-secondary">v2.0 • Botanical Intelligence Platform</span>
             <h1>Iris Flower Species Classification System</h1>
             <p>
-                An enterprise machine learning pipeline for real-time botanical taxon prediction, 
-                automated feature importance evaluation, multi-algorithm benchmarking, and PDF reporting.
+                An enterprise-grade machine learning system providing real-time multi-class taxonomic prediction, 
+                5-fold cross-validated hyperparameter optimization, and cryptographic audit persistence.
             </p>
         </div>
     """, unsafe_allow_html=True)
     
-    # Action Buttons
-    c_btn1, c_btn2, _ = st.columns([1.3, 1.3, 4])
+    # Action Buttons (shadcn button patterns)
+    c_btn1, c_btn2, _ = st.columns([1.4, 1.4, 3.5])
     with c_btn1:
-        if st.button("🚀 Explore Dashboard", type="primary", use_container_width=True):
-            st.session_state['selected_menu'] = "📋 Dataset Overview"
+        if st.button("Explore Analytics", type="primary", use_container_width=True):
+            st.session_state['main_navigation_radio'] = "📋 Dataset & Cleaning"
             st.rerun()
     with c_btn2:
-        if st.button("🔮 Real-Time Prediction", use_container_width=True):
-            st.session_state['selected_menu'] = "🔮 Prediction"
+        if st.button("Real-Time Prediction", use_container_width=True):
+            st.session_state['main_navigation_radio'] = "🔮 Real-Time Prediction"
             st.rerun()
             
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<div style='margin-top: 1.5rem;'></div>", unsafe_allow_html=True)
     
-    # Core Architecture Highlights (Dynamic flex height - no text overflow)
-    st.subheader("Core System Architecture")
+    # shadcn Card Grid: System Capabilities
+    st.markdown("### System Architecture")
     
     col1, col2, col3 = st.columns(3)
     with col1:
         st.markdown("""
-            <div class="saas-card">
-                <h4>📊 Exploratory Data Analysis</h4>
-                <p>
-                    Interactive multi-dimensional Plotly visualizations including species distributions, 
-                    correlation matrices, and 3D coordinate space mappings.
-                </p>
+            <div class="shadcn-card">
+                <div class="shadcn-card-header">
+                    <span class="shadcn-card-title">Exploratory Data Analysis</span>
+                    <span class="shadcn-card-description">Interactive Multi-Dimensional EDA</span>
+                </div>
+                <div class="shadcn-card-content">
+                    High-density Plotly visualizations covering taxonomic distributions, 
+                    correlation matrices, and 3D coordinate space projections.
+                </div>
             </div>
         """, unsafe_allow_html=True)
         
     with col2:
         st.markdown("""
-            <div class="saas-card">
-                <h4>⚡ Multi-Model Benchmarking</h4>
-                <p>
-                    Evaluates K-Nearest Neighbors (KNN), Decision Tree, and Support Vector Machine (SVM) 
-                    with stratified 80/20 train-test partitioning.
-                </p>
+            <div class="shadcn-card">
+                <div class="shadcn-card-header">
+                    <span class="shadcn-card-title">Multi-Model Benchmarks</span>
+                    <span class="shadcn-card-description">Supervised Algorithms Evaluation</span>
+                </div>
+                <div class="shadcn-card-content">
+                    Side-by-side benchmarking of K-Nearest Neighbors (KNN), Decision Tree, 
+                    and Support Vector Machine (SVM) on stratified 80/20 partitions.
+                </div>
             </div>
         """, unsafe_allow_html=True)
         
     with col3:
         st.markdown("""
-            <div class="saas-card">
-                <h4>🎛️ 5-Fold GridSearchCV Tuning</h4>
-                <p>
-                    Cross-validated hyperparameter optimization across distance metrics, tree depths, 
-                    and SVM kernels with automated best model identification.
-                </p>
+            <div class="shadcn-card">
+                <div class="shadcn-card-header">
+                    <span class="shadcn-card-title">5-Fold GridSearchCV</span>
+                    <span class="shadcn-card-description">Hyperparameter Optimization</span>
+                </div>
+                <div class="shadcn-card-content">
+                    Cross-validated grid exploration across Euclidean distance metrics, 
+                    tree pruning depths, and geometric hyperplane kernels.
+                </div>
             </div>
         """, unsafe_allow_html=True)
         
     col4, col5, col6 = st.columns(3)
     with col4:
         st.markdown("""
-            <div class="saas-card">
-                <h4>🧹 Automated Data Hygiene</h4>
-                <p>
-                    Automated duplicate record purging, missing value checks, and statistical data validation.
-                </p>
+            <div class="shadcn-card">
+                <div class="shadcn-card-header">
+                    <span class="shadcn-card-title">Automated Data Hygiene</span>
+                    <span class="shadcn-card-description">Quality & Validation Auditing</span>
+                </div>
+                <div class="shadcn-card-content">
+                    Automated duplicate record purging, missing cell detection, 
+                    and descriptive statistical dispersion verification.
+                </div>
             </div>
         """, unsafe_allow_html=True)
         
     with col5:
         st.markdown("""
-            <div class="saas-card">
-                <h4>🎯 Explainable AI Inference</h4>
-                <p>
-                    Instant taxonomic classification with confidence scoring, probability distribution, and biological rationale.
-                </p>
+            <div class="shadcn-card">
+                <div class="shadcn-card-header">
+                    <span class="shadcn-card-title">Real-Time ML Inference</span>
+                    <span class="shadcn-card-description">Instant Diagnostic Scoring</span>
+                </div>
+                <div class="shadcn-card-content">
+                    Instant taxon classification with calibrated confidence scores, 
+                    specimen illustrations, and biological rationale.
+                </div>
             </div>
         """, unsafe_allow_html=True)
         
     with col6:
         st.markdown("""
-            <div class="saas-card">
-                <h4>📄 ReportLab PDF Export</h4>
-                <p>
-                    Download formal PDF prediction certificates and model benchmark reports.
-                </p>
+            <div class="shadcn-card">
+                <div class="shadcn-card-header">
+                    <span class="shadcn-card-title">Executive PDF Reporting</span>
+                    <span class="shadcn-card-description">Official Exportable Certificates</span>
+                </div>
+                <div class="shadcn-card-content">
+                    On-the-fly generated formal PDF diagnostic certificates 
+                    and algorithmic model benchmark documents.
+                </div>
             </div>
         """, unsafe_allow_html=True)
 
-    st.markdown("<br>", unsafe_allow_html=True)
+    st.markdown("<div style='margin-top: 1rem;'></div>", unsafe_allow_html=True)
 
-    # Technical Overview Section
-    st.subheader("Dataset & Scientific Rationale")
+    # Scientific Foundations Section
+    st.markdown("### Taxonomic Overview")
     ac1, ac2 = st.columns(2)
     
     with ac1:
         st.markdown("""
-            <div class="saas-card">
-                <h4>Fisher's Botanical Iris Benchmark</h4>
-                <p>
-                    Introduced by British statistician Ronald Fisher in 1936, the Iris dataset represents 
-                    the quintessential standard for pattern recognition. It measures 150 specimens across 
-                    three distinct species:
-                </p>
-                <ul>
-                    <li><b>Iris Setosa</b> — Separable by compact petals (length &lt; 2.5 cm).</li>
-                    <li><b>Iris Versicolor</b> — Intermediate morphological petal span.</li>
-                    <li><b>Iris Virginica</b> — Prominent petals with expansive dimensions.</li>
-                </ul>
+            <div class="shadcn-card">
+                <div class="shadcn-card-header">
+                    <span class="shadcn-card-title">Fisher's Botanical Benchmark</span>
+                    <span class="shadcn-card-description">Historical biological reference dataset</span>
+                </div>
+                <div class="shadcn-card-content">
+                    <p style="margin-top: 0;">Introduced by Ronald Fisher in 1936, the Iris benchmark dataset includes 150 biological specimens across three distinct subspecies:</p>
+                    <ul style="padding-left: 1.25rem; margin-bottom: 0;">
+                        <li><b>Iris Setosa</b> — Linearly separable by diminutive petals (&lt; 2.5 cm).</li>
+                        <li><b>Iris Versicolor</b> — Intermediate morphological petal span.</li>
+                        <li><b>Iris Virginica</b> — Prominent petals with expansive floral dimensions.</li>
+                    </ul>
+                </div>
             </div>
         """, unsafe_allow_html=True)
         
     with ac2:
         st.markdown("""
-            <div class="saas-card">
-                <h4>Mathematical Decision Boundaries</h4>
-                <p>
-                    By formulating mathematical separating hyperplanes across 
-                    Sepal Length, Sepal Width, Petal Length, and Petal Width, 
-                    the models achieve 95% to 100% precision.
-                </p>
-                <p>
-                    Feature importance audits confirm petal dimensions contribute over 
-                    85% of total predictive power due to ecological pollinator specialization.
-                </p>
+            <div class="shadcn-card">
+                <div class="shadcn-card-header">
+                    <span class="shadcn-card-title">Separating Hyperplanes</span>
+                    <span class="shadcn-card-description">High-dimensional feature space separation</span>
+                </div>
+                <div class="shadcn-card-content">
+                    <p style="margin-top: 0;">By calculating optimal boundary hyperplanes across Sepal and Petal dimensions, our algorithms achieve 95% to 100% precision on holdout testing partitions.</p>
+                    <p style="margin-bottom: 0;">Feature importance evaluations demonstrate that petal dimensions drive over 85% of total predictive power due to pollinator evolutionary specialization.</p>
+                </div>
             </div>
         """, unsafe_allow_html=True)
 
-    # Professional Footer
+    # shadcn Footer
     st.markdown("""
-        <hr style="border: 0; border-top: 1px solid #e2e8f0; margin-top: 40px; margin-bottom: 20px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; color: #64748b; font-size: 0.85rem;">
+        <hr style="margin-top: 2.5rem; margin-bottom: 1.25rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; color: var(--muted-foreground, #71717a); font-size: 0.8125rem;">
             <div>
-                <b>Iris Species Classification System</b> • Machine Learning Production Portal
+                <b>Iris AI Studio</b> • shadcn/ui design implementation
             </div>
             <div>
-                Built with Python, Streamlit, Scikit-Learn, and Plotly
+                Production Machine Learning Stack • Python 3.12
             </div>
         </div>
     """, unsafe_allow_html=True)

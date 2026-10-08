@@ -33,7 +33,11 @@ def render_confusion_matrix_view(df: pd.DataFrame):
             color_continuous_scale="Purples",
             labels=dict(x="Predicted Class", y="Ground Truth Class", color="Specimens")
         )
-        fig_cm.update_layout(height=450)
+        fig_cm.update_layout(
+            height=450,
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)'
+        )
         st.plotly_chart(fig_cm, use_container_width=True)
         
     with col2:
@@ -56,11 +60,13 @@ def render_confusion_matrix_view(df: pd.DataFrame):
         
         # Overall Summary Metrics
         st.markdown(f"""
-            <div class="saas-card" style="margin-top: 15px;">
-                <b>Aggregated Performance Indicators:</b><br/>
-                • <b>Accuracy:</b> {cr['accuracy']*100:.2f}%<br/>
-                • <b>Macro Avg F1:</b> {cr['macro avg']['f1-score']*100:.2f}%<br/>
-                • <b>Weighted Avg F1:</b> {cr['weighted avg']['f1-score']*100:.2f}%
+            <div class="shadcn-card" style="margin-top: 15px;">
+                <div class="shadcn-card-title" style="font-size: 0.95rem;">Aggregated Performance Indicators</div>
+                <div class="shadcn-card-description" style="margin-top: 8px; line-height: 1.8;">
+                    • <b>Accuracy:</b> {cr['accuracy']*100:.2f}%<br/>
+                    • <b>Macro Avg F1:</b> {cr['macro avg']['f1-score']*100:.2f}%<br/>
+                    • <b>Weighted Avg F1:</b> {cr['weighted avg']['f1-score']*100:.2f}%
+                </div>
             </div>
         """, unsafe_allow_html=True)
         
@@ -70,12 +76,15 @@ def render_confusion_matrix_view(df: pd.DataFrame):
         with cm_col1:
             st.markdown("##### 🔵 KNN")
             f1 = px.imshow(results["KNN"]["confusion_matrix"], x=classes, y=classes, text_auto=True, color_continuous_scale="Blues")
+            f1.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
             st.plotly_chart(f1, use_container_width=True)
         with cm_col2:
             st.markdown("##### 🟢 Decision Tree")
             f2 = px.imshow(results["Decision Tree"]["confusion_matrix"], x=classes, y=classes, text_auto=True, color_continuous_scale="Greens")
+            f2.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
             st.plotly_chart(f2, use_container_width=True)
         with cm_col3:
             st.markdown("##### 🟣 SVM")
             f3 = px.imshow(results["SVM"]["confusion_matrix"], x=classes, y=classes, text_auto=True, color_continuous_scale="Purples")
+            f3.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
             st.plotly_chart(f3, use_container_width=True)

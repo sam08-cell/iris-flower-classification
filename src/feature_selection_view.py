@@ -36,7 +36,11 @@ def render_feature_selection(df: pd.DataFrame):
             color_continuous_scale="Purples",
             title="Relative Predictive Contribution of Iris Features"
         )
-        fig_bar.update_layout(yaxis={'categoryorder': 'total ascending'})
+        fig_bar.update_layout(
+            yaxis={'categoryorder': 'total ascending'},
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)'
+        )
         st.plotly_chart(fig_bar, use_container_width=True)
         
     with col2:
@@ -44,24 +48,24 @@ def render_feature_selection(df: pd.DataFrame):
         st.dataframe(feat_df[['Feature', 'Importance Score', 'Normalized %']], use_container_width=True)
         
         st.markdown("""
-            <div class="saas-card" style="margin-top: 15px;">
-                <h5 style="margin: 0; color: #4f46e5;">Key Selection Takeaways</h5>
-                <p style="font-size: 0.88rem; color: #475569; margin-top: 6px;">
+            <div class="shadcn-card" style="margin-top: 15px;">
+                <div class="shadcn-card-title" style="font-size: 0.95rem;">Key Selection Takeaways</div>
+                <div class="shadcn-card-description" style="margin-top: 6px;">
                     <b>Petal Length (~44%)</b> and <b>Petal Width (~42%)</b> account for over <b>85%</b> of the predictive 
                     decision power. Sepal attributes provide secondary stabilization along borderline classifications.
-                </p>
+                </div>
             </div>
         """, unsafe_allow_html=True)
         
     # Correlation Analysis
     st.subheader("🔬 Correlation with Class Separability")
     st.markdown("""
-        <div class="saas-card">
-            <h4>Why are Petal Dimensions the Dominant Predictors?</h4>
-            <p style="font-size: 0.92rem; color: #475569; line-height: 1.6;">
+        <div class="shadcn-card">
+            <div class="shadcn-card-title">Why are Petal Dimensions the Dominant Predictors?</div>
+            <div class="shadcn-card-description" style="margin-top: 8px; line-height: 1.6;">
                 In botanical evolutionary biology, petal dimensions directly reflect ecological specialization for pollinator attraction. 
                 Iris Setosa possesses diminutive petals designed for miniature bees, whereas Virginica develops large petals. 
                 Sepal dimensions, conversely, act as standard vegetative calyx structures and exhibit higher intra-species environmental variance.
-            </p>
+            </div>
         </div>
     """, unsafe_allow_html=True)

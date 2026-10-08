@@ -44,13 +44,15 @@ def render_eda(df: pd.DataFrame):
             st.plotly_chart(fig_pie, use_container_width=True)
         with c2:
             st.markdown("""
-                <div class="saas-card" style="margin-top: 15px;">
-                    <h4>Taxonomic Distribution Insights</h4>
-                    <p style="font-size: 0.9rem; line-height: 1.5; color: #475569;">
-                        The Iris dataset maintains an impeccably balanced class representation (approx. 50 specimens each). 
-                        This balance is ideal because classification algorithms will not suffer from majority-class bias, 
-                        eliminating the requirement for synthetic oversampling (SMOTE) or sample reweighting.
-                    </p>
+                <div class="shadcn-card" style="margin-top: 15px;">
+                    <div class="shadcn-card-header">
+                        <span class="shadcn-card-title">Taxonomic Insights</span>
+                        <span class="shadcn-card-description">Class Balance Analysis</span>
+                    </div>
+                    <div class="shadcn-card-content">
+                        The Iris dataset maintains balanced class representation (50 specimens each). 
+                        This balance ensures classification algorithms do not suffer from majority-class bias.
+                    </div>
                 </div>
             """, unsafe_allow_html=True)
 
@@ -71,10 +73,14 @@ def render_eda(df: pd.DataFrame):
         )
         st.plotly_chart(fig_hist, use_container_width=True)
         st.markdown(f"""
-            <div class="saas-card">
-                <b>Distribution Rationale:</b> 
-                Observing the histogram for <code>{feature_choice}</code> reveals the distinctive multi-modal distribution 
-                where Iris Setosa forms an isolated cluster, while Versicolor and Virginica exhibit slight continuous overlap.
+            <div class="shadcn-card">
+                <div class="shadcn-card-header">
+                    <span class="shadcn-card-title">Distribution Rationale</span>
+                </div>
+                <div class="shadcn-card-content">
+                    Observing <code>{feature_choice}</code> reveals distinct multi-modal distributions 
+                    where Iris Setosa forms an isolated cluster, while Versicolor and Virginica exhibit slight continuous overlap.
+                </div>
             </div>
         """, unsafe_allow_html=True)
 
@@ -105,13 +111,17 @@ def render_eda(df: pd.DataFrame):
         )
         st.plotly_chart(fig_corr, use_container_width=True)
         st.markdown("""
-            <div class="saas-card">
-                <b>Key Correlation Observations:</b>
-                <ul>
-                    <li><b>Petal Length and Petal Width:</b> Very high positive correlation (r = 0.96). As petals lengthen, their width scales proportionally.</li>
-                    <li><b>Petal Length and Sepal Length:</b> Strong positive correlation (r = 0.87).</li>
-                    <li><b>Sepal Width vs Petal Length:</b> Moderate negative correlation (r = -0.42).</li>
-                </ul>
+            <div class="shadcn-card">
+                <div class="shadcn-card-header">
+                    <span class="shadcn-card-title">Key Correlation Observations</span>
+                </div>
+                <div class="shadcn-card-content">
+                    <ul style="padding-left: 1.25rem; margin: 0;">
+                        <li><b>Petal Length & Petal Width:</b> Very high positive correlation (r = 0.96).</li>
+                        <li><b>Petal Length & Sepal Length:</b> Strong positive correlation (r = 0.87).</li>
+                        <li><b>Sepal Width vs Petal Length:</b> Moderate negative correlation (r = -0.42).</li>
+                    </ul>
+                </div>
             </div>
         """, unsafe_allow_html=True)
 

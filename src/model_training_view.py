@@ -31,10 +31,14 @@ def render_model_training(df: pd.DataFrame):
         })
         fig_split = px.bar(
             split_df, x="Partition", y="Count", color="Partition",
-            color_discrete_sequence=['#4f46e5', '#ec4899'],
+            color_discrete_sequence=['#18181b', '#71717a'],
             height=200
         )
-        fig_split.update_layout(margin=dict(l=10, r=10, t=10, b=10))
+        fig_split.update_layout(
+            margin=dict(l=10, r=10, t=10, b=10),
+            paper_bgcolor='rgba(0,0,0,0)',
+            plot_bgcolor='rgba(0,0,0,0)'
+        )
         st.plotly_chart(fig_split, use_container_width=True)
         
     st.markdown("<hr>", unsafe_allow_html=True)
@@ -62,9 +66,12 @@ def render_model_training(df: pd.DataFrame):
     c_knn, c_dt, c_svm = st.columns(3)
     
     with c_knn:
-        st.markdown('<div class="saas-card">', unsafe_allow_html=True)
-        st.markdown("#### K-Nearest Neighbors (KNN)")
-        st.caption("Hyperparameters: n_neighbors=5, metric=minkowski")
+        st.markdown("""
+            <div class="shadcn-card">
+                <div class="shadcn-badge shadcn-badge-secondary" style="margin-bottom: 8px;">K-Nearest Neighbors</div>
+                <div class="shadcn-card-title">KNN Classifier</div>
+                <div class="shadcn-card-description" style="margin-bottom: 12px;">k=5, minkowski metric</div>
+        """, unsafe_allow_html=True)
         knn_res = results["KNN"]
         st.metric("Accuracy", f"{knn_res['accuracy']*100:.2f}%")
         st.metric("Precision (Weighted)", f"{knn_res['precision']*100:.2f}%")
@@ -73,9 +80,12 @@ def render_model_training(df: pd.DataFrame):
         st.markdown('</div>', unsafe_allow_html=True)
         
     with c_dt:
-        st.markdown('<div class="saas-card">', unsafe_allow_html=True)
-        st.markdown("#### Decision Tree")
-        st.caption("Hyperparameters: max_depth=3, criterion=gini")
+        st.markdown("""
+            <div class="shadcn-card">
+                <div class="shadcn-badge shadcn-badge-secondary" style="margin-bottom: 8px;">Decision Tree</div>
+                <div class="shadcn-card-title">Decision Tree Classifier</div>
+                <div class="shadcn-card-description" style="margin-bottom: 12px;">max_depth=3, criterion=gini</div>
+        """, unsafe_allow_html=True)
         dt_res = results["Decision Tree"]
         st.metric("Accuracy", f"{dt_res['accuracy']*100:.2f}%")
         st.metric("Precision (Weighted)", f"{dt_res['precision']*100:.2f}%")
@@ -84,9 +94,12 @@ def render_model_training(df: pd.DataFrame):
         st.markdown('</div>', unsafe_allow_html=True)
         
     with c_svm:
-        st.markdown('<div class="saas-card">', unsafe_allow_html=True)
-        st.markdown("#### Support Vector Machine (SVM)")
-        st.caption("Hyperparameters: kernel=linear, C=1.0")
+        st.markdown("""
+            <div class="shadcn-card">
+                <div class="shadcn-badge shadcn-badge-secondary" style="margin-bottom: 8px;">Support Vector Machine</div>
+                <div class="shadcn-card-title">SVM Classifier</div>
+                <div class="shadcn-card-description" style="margin-bottom: 12px;">kernel=linear, C=1.0</div>
+        """, unsafe_allow_html=True)
         svm_res = results["SVM"]
         st.metric("Accuracy", f"{svm_res['accuracy']*100:.2f}%")
         st.metric("Precision (Weighted)", f"{svm_res['precision']*100:.2f}%")

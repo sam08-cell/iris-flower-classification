@@ -9,34 +9,34 @@ def render_about_project():
     
     with col1:
         st.markdown("""
-            <div class="saas-card">
-                <h4>🎯 Project Objective & Scope</h4>
-                <p style="font-size: 0.92rem; color: #475569; line-height: 1.6;">
-                    The Iris Flower Species Classification System is an enterprise-grade machine learning platform 
+            <div class="shadcn-card">
+                <div class="shadcn-card-title">🎯 Project Objective & Scope</div>
+                <div class="shadcn-card-description" style="margin-top: 8px; line-height: 1.6;">
+                    The Iris Flower Species Classification System is a machine learning platform 
                     designed to classify botanical specimens into three taxonomic entities:
-                </p>
-                <ol style="font-size: 0.9rem; color: #475569; padding-left: 20px;">
+                </div>
+                <ul style="font-size: 0.875rem; margin-top: 8px; line-height: 1.8;">
                     <li><b>Iris Setosa</b></li>
                     <li><b>Iris Versicolor</b></li>
                     <li><b>Iris Virginica</b></li>
-                </ol>
-                <p style="font-size: 0.92rem; color: #475569; line-height: 1.6;">
+                </ul>
+                <div class="shadcn-card-description" style="margin-top: 8px; line-height: 1.6;">
                     Built with end-to-end reproducibility, rigorous cross-validation, and user authentication, 
                     the application bridges biological taxonomic measurement and automated decision systems.
-                </p>
+                </div>
             </div>
         """, unsafe_allow_html=True)
         
     with col2:
         st.markdown("""
-            <div class="saas-card">
-                <h4>🛠️ Technical Architecture & Stack</h4>
-                <ul style="font-size: 0.9rem; color: #475569; padding-left: 20px; line-height: 1.7;">
-                    <li><b>Front-End:</b> Streamlit 1.45+ with responsive Glassmorphic design and CSS3 animations.</li>
-                    <li><b>Machine Learning:</b> Scikit-Learn (KNeighborsClassifier, DecisionTreeClassifier, SVC, GridSearchCV).</li>
+            <div class="shadcn-card">
+                <div class="shadcn-card-title">🛠️ Technical Architecture & Stack</div>
+                <ul style="font-size: 0.875rem; margin-top: 10px; line-height: 1.8;">
+                    <li><b>Design System:</b> shadcn/ui zinc aesthetic with Geist typography.</li>
+                    <li><b>Machine Learning:</b> Scikit-Learn (KNN, Decision Tree, SVC, 5-Fold GridSearchCV).</li>
                     <li><b>Data Manipulation:</b> Pandas & NumPy.</li>
-                    <li><b>Visualization:</b> Plotly Express & Figure Factory for interactive charts.</li>
-                    <li><b>Authentication & Persistence:</b> SQLite3 with salted SHA-256 cryptographic hashing.</li>
+                    <li><b>Visualization:</b> Plotly Express interactive charts.</li>
+                    <li><b>Persistence & Security:</b> SQLite3 with salted SHA-256 cryptographic hashing.</li>
                     <li><b>Document Generation:</b> ReportLab PDF typography engine.</li>
                 </ul>
             </div>
@@ -47,42 +47,45 @@ def render_about_project():
     
     with m1:
         st.markdown("""
-            <div class="saas-card">
-                <h5 style="color: #2563eb;">K-Nearest Neighbors</h5>
-                <p style="font-size: 0.88rem; color: #475569;">
+            <div class="shadcn-card">
+                <div class="shadcn-badge shadcn-badge-secondary" style="margin-bottom: 8px;">K-Nearest Neighbors</div>
+                <div class="shadcn-card-title" style="font-size: 1rem;">Instance-Based Classifier</div>
+                <div class="shadcn-card-description" style="margin-top: 8px; line-height: 1.6;">
                     Computes Minkowski or Euclidean distance:
                     <br/><br/>
                     <code>d(x, y) = √(∑(xᵢ - yᵢ)²)</code>
                     <br/><br/>
-                    Assigns the specimen to the majority vote of the <i>k</i> nearest spatial neighbors in 4-dimensional space.
-                </p>
+                    Assigns the specimen to the majority vote of the <i>k</i> nearest spatial neighbors in 4-dimensional feature space.
+                </div>
             </div>
         """, unsafe_allow_html=True)
         
     with m2:
         st.markdown("""
-            <div class="saas-card">
-                <h5 style="color: #059669;">Decision Tree</h5>
-                <p style="font-size: 0.88rem; color: #475569;">
+            <div class="shadcn-card">
+                <div class="shadcn-badge shadcn-badge-secondary" style="margin-bottom: 8px;">Decision Tree</div>
+                <div class="shadcn-card-title" style="font-size: 1rem;">Rule-Based Classifier</div>
+                <div class="shadcn-card-description" style="margin-top: 8px; line-height: 1.6;">
                     Minimizes Gini Impurity at each split:
                     <br/><br/>
                     <code>Gini = 1 - ∑(pᵢ)²</code>
                     <br/><br/>
                     Derives orthogonal rules like: <i>"Petal Length ≤ 2.45 cm ➔ Setosa"</i> for maximum explainability.
-                </p>
+                </div>
             </div>
         """, unsafe_allow_html=True)
         
     with m3:
         st.markdown("""
-            <div class="saas-card">
-                <h5 style="color: #9333ea;">Support Vector Machine</h5>
-                <p style="font-size: 0.88rem; color: #475569;">
+            <div class="shadcn-card">
+                <div class="shadcn-badge shadcn-badge-secondary" style="margin-bottom: 8px;">Support Vector Machine</div>
+                <div class="shadcn-card-title" style="font-size: 1rem;">Maximum Margin Classifier</div>
+                <div class="shadcn-card-description" style="margin-top: 8px; line-height: 1.6;">
                     Maximizes the geometric functional margin:
                     <br/><br/>
                     <code>max (2 / ||w||)</code>
                     <br/><br/>
-                    Projects high-dimensional floral vectors across Radial Basis (RBF) or Linear kernels to achieve optimal separation.
-                </p>
+                    Separates high-dimensional floral vectors across Radial Basis (RBF) or Linear kernels to achieve optimal classification.
+                </div>
             </div>
         """, unsafe_allow_html=True)
