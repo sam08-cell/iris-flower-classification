@@ -12,14 +12,24 @@ def render_prediction_page():
     st.markdown("## Real-Time Iris Species Inference")
     st.caption("Provide floral morphological dimensions to obtain instant algorithmic taxon predictions.")
     
+    # Initialize default inputs in session_state if not present
+    if 'pred_sl' not in st.session_state:
+        st.session_state['pred_sl'] = 5.8
+    if 'pred_sw' not in st.session_state:
+        st.session_state['pred_sw'] = 3.0
+    if 'pred_pl' not in st.session_state:
+        st.session_state['pred_pl'] = 4.3
+    if 'pred_pw' not in st.session_state:
+        st.session_state['pred_pw'] = 1.3
+        
     col_input, col_result = st.columns([1.15, 1.35])
     
     with col_input:
         st.markdown("""
-            <div class="shadcn-card">
+            <div class="shadcn-card" style="margin-bottom: 1rem;">
                 <div class="shadcn-card-header">
-                    <span class="shadcn-card-title">Morphological Dimensions</span>
-                    <span class="shadcn-card-description">Enter flower measurements or select specimen presets</span>
+                    <div class="shadcn-card-title">Morphological Dimensions</div>
+                    <div class="shadcn-card-description">Select preset biological specimen values or enter custom measurements:</div>
                 </div>
             </div>
         """, unsafe_allow_html=True)
@@ -27,33 +37,73 @@ def render_prediction_page():
         # Quick presets
         st.caption("Taxonomic Sample Presets:")
         preset_cols = st.columns(3)
-        if preset_cols[0].button("Setosa", use_container_width=True):
-            st.session_state['input_sl'] = 5.1
-            st.session_state['input_sw'] = 3.5
-            st.session_state['input_pl'] = 1.4
-            st.session_state['input_pw'] = 0.2
-        if preset_cols[1].button("Versicolor", use_container_width=True):
-            st.session_state['input_sl'] = 6.0
-            st.session_state['input_sw'] = 2.9
-            st.session_state['input_pl'] = 4.5
-            st.session_state['input_pw'] = 1.5
-        if preset_cols[2].button("Virginica", use_container_width=True):
-            st.session_state['input_sl'] = 6.9
-            st.session_state['input_sw'] = 3.1
-            st.session_state['input_pl'] = 5.8
-            st.session_state['input_pw'] = 2.1
+        if preset_cols[0].button("🌸 Setosa", use_container_width=True):
+            st.session_state['pred_sl'] = 5.1
+            st.session_state['pred_sw'] = 3.5
+            st.session_state['pred_pl'] = 1.4
+            st.session_state['pred_pw'] = 0.2
+            st.rerun()
             
-        sl = st.number_input("Sepal Length (cm)", min_value=3.5, max_value=9.0, value=st.session_state.get('input_sl', 5.8), step=0.1)
-        sw = st.number_input("Sepal Width (cm)", min_value=1.5, max_value=5.0, value=st.session_state.get('input_sw', 3.0), step=0.1)
-        pl = st.number_input("Petal Length (cm)", min_value=0.5, max_value=8.0, value=st.session_state.get('input_pl', 4.3), step=0.1)
-        pw = st.number_input("Petal Width (cm)", min_value=0.1, max_value=3.5, value=st.session_state.get('input_pw', 1.3), step=0.1)
+        if preset_cols[1].button("🌺 Versicolor", use_container_width=True):
+            st.session_state['pred_sl'] = 6.0
+            st.session_state['pred_sw'] = 2.9
+            st.session_state['pred_pl'] = 4.5
+            st.session_state['pred_pw'] = 1.5
+            st.rerun()
+            
+        if preset_cols[2].button("🌼 Virginica", use_container_width=True):
+            st.session_state['pred_sl'] = 6.9
+            st.session_state['pred_sw'] = 3.1
+            st.session_state['pred_pl'] = 5.8
+            st.session_state['pred_pw'] = 2.1
+            st.rerun()
+            
+        sl = st.number_input(
+            "Sepal Length (cm)",
+            min_value=3.5,
+            max_value=9.0,
+            value=float(st.session_state['pred_sl']),
+            step=0.1,
+            key="pred_input_sl"
+        )
+        sw = st.number_input(
+            "Sepal Width (cm)",
+            min_value=1.5,
+            max_value=5.0,
+            value=float(st.session_state['pred_sw']),
+            step=0.1,
+            key="pred_input_sw"
+        )
+        pl = st.number_input(
+            "Petal Length (cm)",
+            min_value=0.5,
+            max_value=8.0,
+            value=float(st.session_state['pred_pl']),
+            step=0.1,
+            key="pred_input_pl"
+        )
+        pw = st.number_input(
+            "Petal Width (cm)",
+            min_value=0.1,
+            max_value=3.5,
+            value=float(st.session_state['pred_pw']),
+            step=0.1,
+            key="pred_input_pw"
+        )
+        
+        # Keep session state updated if user typed directly
+        st.session_state['pred_sl'] = sl
+        st.session_state['pred_sw'] = sw
+        st.session_state['pred_pl'] = pl
+        st.session_state['pred_pw'] = pw
         
         model_choice = st.selectbox(
             "Predictive Algorithm:",
-            ["SVM (Tuned)", "KNN (Tuned)", "Decision Tree (Tuned)", "SVM", "KNN", "Decision Tree"]
+            ["SVM (Tuned)", "KNN (Tuned)", "Decision Tree (Tuned)", "SVM", "KNN", "Decision Tree"],
+            key="pred_model_selector"
         )
         
-        predict_clicked = st.button("Run Inference", type="primary", use_container_width=True)
+        predict_clicked = st.button("🔮 Run Inference", type="primary", use_container_width=True)
         
     with col_result:
         if predict_clicked:
@@ -64,7 +114,10 @@ def render_prediction_page():
                 
                 # Save to database
                 user_email = st.session_state.get('user', {}).get('email', 'analyst@iris.ai')
-                log_prediction(user_email, sl, sw, pl, pw, model_choice, pred_species, confidence)
+                try:
+                    log_prediction(user_email, sl, sw, pl, pw, model_choice, pred_species, confidence)
+                except Exception:
+                    pass
                 
                 st.session_state['last_prediction'] = {
                     "user_email": user_email,
@@ -91,9 +144,9 @@ def render_prediction_page():
                 
             img_path = os.path.join(ASSETS_DIR, img_file)
             
-            # shadcn/ui Outcome Card
+            # Outcome Card
             st.markdown(f"""
-                <div class="shadcn-card" style="border-left: 4px solid var(--primary, #18181b);">
+                <div class="shadcn-card" style="border-left: 4px solid var(--primary, #18181b); margin-bottom: 1rem;">
                     <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                         <div>
                             <span class="shadcn-badge shadcn-badge-default">Identified Specimen</span>
@@ -138,15 +191,18 @@ def render_prediction_page():
                     st.plotly_chart(fig_p, use_container_width=True)
                     
             # Download PDF Report button
-            pdf_bytes = generate_prediction_pdf(last)
-            st.download_button(
-                label="Download Official Certificate (PDF)",
-                data=pdf_bytes,
-                file_name=f"Iris_Classification_Report_{species.replace(' ', '_')}.pdf",
-                mime="application/pdf",
-                type="primary",
-                use_container_width=True
-            )
+            try:
+                pdf_bytes = generate_prediction_pdf(last)
+                st.download_button(
+                    label="📥 Download Official Certificate (PDF)",
+                    data=pdf_bytes,
+                    file_name=f"Iris_Classification_Report_{species.replace(' ', '_')}.pdf",
+                    mime="application/pdf",
+                    type="primary",
+                    use_container_width=True
+                )
+            except Exception as e:
+                st.caption(f"PDF export temporarily unavailable: {e}")
         else:
             st.markdown("""
                 <div class="shadcn-card" style="text-align: center; padding: 3rem 1.5rem !important;">
